@@ -1,0 +1,38 @@
+<section id="cover" class="min-vh-100">
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row text-white">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+          <div class="alert alert-danger alert-dismissible fade show login-error" role="alert" *ngIf="showAlert">
+            <strong>Error: </strong>  Invalid username/ password!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true" (click)="showAlert=false">&times;</span>
+            </button>
+          </div>
+          <h1 class="py-2 text-truncate">Please Login Here</h1>
+          <div class="px-2">
+            <form class="justify-content-center" (ngSubmit)="loginForm.form.valid && loginUser()" #loginForm="ngForm">
+              <div class="form-group">
+                <label class="float-left">Username</label>
+                <input type="text" class="form-control" placeholder="Enter username"  name="userName"
+                [(ngModel)]="username" #userName="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && userName.invalid }" required>
+                <div *ngIf="loginForm.submitted && userName.invalid" class="invalid-feedback">
+                  <div *ngIf="userName.errors.required">Username is required</div>
+              </div>
+              </div>
+              <div class="form-group">
+                <label class="float-left">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" name="passWord"
+                [(ngModel)]="password" #passWord="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && passWord.invalid }" required>
+                <div *ngIf="loginForm.submitted && passWord.invalid" class="invalid-feedback">
+                  <div *ngIf="passWord.errors.required">Password is required</div>
+              </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

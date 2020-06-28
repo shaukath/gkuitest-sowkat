@@ -1,0 +1,59 @@
+<a href="" class="back" routerLink="/dashboard"><< Back</a>
+
+
+<section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+            <h1 class="py-2 text-truncate">Add Customer Details</h1>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showAlert">
+                Customer Added successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true" (click)="showAlert=false">&times;</span>
+                </button>
+              </div>
+            <div class="px-2">
+              <form (ngSubmit)="customerForm.form.valid && addUser(customerForm)" #customerForm="ngForm">
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-4 col-form-label">Customer Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Please enter customer name" name="customername"
+                        [(ngModel)]="customerName" #customername="ngModel" [ngClass]="{ 'is-invalid': customerForm.submitted && customername.invalid }" required>
+                    <div *ngIf="customerForm.submitted && customername.invalid" class="invalid-feedback">
+                        <div *ngIf="customername.errors.required">Customer name is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputPassword" class="col-sm-4 col-form-label">Age</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword" placeholder="Please enter numbers" name="ageNumber"
+                        (keypress)="isNumber($event)"
+                        [(ngModel)]="age" #ageNumber="ngModel" [ngClass]="{ 'is-invalid': customerForm.submitted && ageNumber.invalid }" required>
+                    <div *ngIf="customerForm.submitted && ageNumber.invalid" class="invalid-feedback">
+                        <div *ngIf="ageNumber.errors.required">Age is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Address</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="" placeholder="Please enter address" name="addressText"
+                            [(ngModel)]="address" #addressText="ngModel" [ngClass]="{ 'is-invalid': customerForm.submitted && addressText.invalid }" required>
+                        </textarea>
+                        <div *ngIf="customerForm.submitted && addressText.invalid" class="invalid-feedback">
+                            <div *ngIf="addressText.errors.required">Address is required</div>
+                        </div>
+                      </div>
+                </div>
+                <button type="reset" class="btn btn-dark btn-md col-lg-4" (click)="goToDashBoard()">Cancel</button>
+                <button type="submit" class="btn btn-success btn-md col-lg-4 float-right">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

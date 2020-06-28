@@ -1,0 +1,9 @@
+.card {
+    margin-bottom: 20px;
+}
+.user-name {
+    padding-right: 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+}
